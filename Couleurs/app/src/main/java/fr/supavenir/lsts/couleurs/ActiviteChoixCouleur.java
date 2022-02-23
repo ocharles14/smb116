@@ -1,14 +1,20 @@
 package fr.supavenir.lsts.couleurs;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+
+//TODO  Empêcher la validation par OK tant que le champ nom de la couleur est vide ou ne
+//TODO  contient que des blancs
+//TODO  Passer directement un objet Couleur dans l'intent de retour de resultat
+
 
 public class ActiviteChoixCouleur extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -18,17 +24,19 @@ public class ActiviteChoixCouleur extends AppCompatActivity implements SeekBar.O
     private SeekBar sbBleu;
     private TextView tvARGB;
     private TextView tvCouleur;
-    private int a;
-    private int r;
-    private int v;
-    private int b;
+    private EditText etNomCouleur;
+
+    private int a = 255;
+    private int r = 0;
+    private int v = 0;
+    private int b = 0;
     private int resultat = RESULT_OK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activite_choix_couleur);
 
         sbAlpha = findViewById( R.id.sbAlpha );
         sbAlpha.setOnSeekBarChangeListener( this );
@@ -49,7 +57,7 @@ public class ActiviteChoixCouleur extends AppCompatActivity implements SeekBar.O
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                ActiviteChoixCouleur.this.finish();
             }
         });
 
@@ -57,19 +65,19 @@ public class ActiviteChoixCouleur extends AppCompatActivity implements SeekBar.O
         btnAnnuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // On annule : utiliser RESULT_CANCELED
                 resultat = RESULT_CANCELED;
-                finish();
+                ActiviteChoixCouleur.this.finish();
             }
         });
-
-
+        etNomCouleur = findViewById( R.id.etNomCouleur );
     }
 
     public void miseAjour( ) {
-        int a = sbAlpha.getProgress();
-        int r = sbRouge.getProgress();
-        int v = sbVert.getProgress();
-        int b = sbBleu.getProgress();
+        a = sbAlpha.getProgress();
+        r = sbRouge.getProgress();
+        v = sbVert.getProgress();
+        b = sbBleu.getProgress();
         String texteCouleur = "ARGB( " + a +" , " + r + " , " + v + " , " + b +" )";
         tvARGB.setText( texteCouleur);
         tvCouleur.setBackgroundColor(Color.argb( a , r, v ,b ));
@@ -81,14 +89,12 @@ public class ActiviteChoixCouleur extends AppCompatActivity implements SeekBar.O
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
+    public void onStartTrackingTouch(SeekBar seekBar) { }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+    public void onStopTrackingTouch(SeekBar seekBar) { }
 
-    }
+    // Utiliser la methode finish pour transmettre des resultats a l'activite appelante
 
     @Override
     public void finish() {
@@ -97,6 +103,7 @@ public class ActiviteChoixCouleur extends AppCompatActivity implements SeekBar.O
         resultIntent.putExtra("r" , r);
         resultIntent.putExtra("v" , v);
         resultIntent.putExtra("b" , b);
+        resultIntent.putExtra( "nom" , etNomCouleur.getText().toString());
         setResult( resultat , resultIntent );
         super.finish();
     }

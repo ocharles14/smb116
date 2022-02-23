@@ -4,10 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ocharles/AndroidStudioProjects/Couleurs/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/olivi/AndroidStudioProjects/smb116/Couleurs/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.196" />
+        <entry key="..\:/Users/olivi/AndroidStudioProjects/smb116/Couleurs/app/src/main/res/drawable/ic_launcher_background.xml" value="0.196" />
+        <entry key="..\:/Users/olivi/AndroidStudioProjects/smb116/Couleurs/app/src/main/res/layout/activite_choix_couleur.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/olivi/AndroidStudioProjects/smb116/Couleurs/app/src/main/res/layout/activite_liste_couleurs.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/olivi/AndroidStudioProjects/smb116/Couleurs/app/src/main/res/layout/liste_couleur_item.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
